@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Trading Calculator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        label {
+            margin-top: 14px;
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 22px;
+            width: 100%;
+            padding: 12px;
+            background-color: #2c7be5;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:active {
+            background-color: #1a68d1;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 14px;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            white-space: pre-line;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .profit {
+            color: #0a8a0a;
+            font-weight: bold;
+        }
+
+        .loss {
+            color: #c00000;
+            font-weight: bold;
+        }
+
+        .neutral {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 28px;
+            padding-top: 14px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #555;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .footer a {
+            color: #2c7be5;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 360px) {
+            h2 {
+                font-size: 20px;
+            }
+            .container {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Share Trading Calculator</h2>
+
+    <label>Buy Amount (LKR)</label>
+    <input type="number" id="buyAmount" inputmode="decimal">
+
+    <label>Buy Price per Share</label>
+    <input type="number" id="buyPrice" inputmode="decimal">
+
+    <label>Sell Price per Share</label>
+    <input type="number" id="sellPrice" inputmode="decimal">
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div class="result" id="result"></div>
+
+    <div class="footer">
+        <p>
+            This calculator was created to help beginners understand how trading
+            fees affect profit and loss. It is shared freely for learning and
+            personal use only.
+        </p>
+        <p>
+            © 2026 Chamidu |
+            <a href="https://www.chamidu.me" target="_blank">www.chamidu.me</a>
+        </p>
+    </div>
+</div>
+
+<script>
+function calculate() {
+    const feeRate = 0.012;
+
+    const buyAmount = parseFloat(document.getElementById("buyAmount").value);
+    const buyPrice = parseFloat(document.getElementById("buyPrice").value);
+    const sellPrice = parseFloat(document.getElementById("sellPrice").value);
+    const resultDiv = document.getElementById("result");
+
+    if (isNaN(buyAmount) || isNaN(buyPrice) || isNaN(sellPrice)) {
+        resultDiv.className = "result neutral";
+        resultDiv.innerText = "Please enter valid numbers.";
+        return;
+    }
+
+    const buyFee = buyAmount * feeRate;
+    const netBuyAmount = buyAmount - buyFee;
+    const shares = netBuyAmount / buyPrice;
+
+    const grossSell = shares * sellPrice;
+    const sellFee = grossSell * feeRate;
+    const netSell = grossSell - sellFee;
+
+    const profitLoss = netSell - buyAmount;
+
+    let output = "";
+    output += "Invested Amount : " + buyAmount.toFixed(2) + " LKR\n";
+    output += "Buy Fee (1.2%)  : " + buyFee.toFixed(2) + " LKR\n";
+    output += "Shares Bought  : " + shares.toFixed(4) + "\n";
+    output += "Sell Fee (1.2%) : " + sellFee.toFixed(2) + " LKR\n";
+    output += "Final Amount   : " + netSell.toFixed(2) + " LKR\n\n";
+
+    if (profitLoss > 0) {
+        resultDiv.className = "result profit";
+        output += "Profit : " + profitLoss.toFixed(2) + " LKR";
+    } else if (profitLoss < 0) {
+        resultDiv.className = "result loss";
+        output += "Loss : " + Math.abs(profitLoss).toFixed(2) + " LKR";
+    } else {
+        resultDiv.className = "result neutral";
+        output += "No Profit, No Loss";
+    }
+
+    resultDiv.innerText = output;
+}
+</script>
+
+</body>
+</html>
