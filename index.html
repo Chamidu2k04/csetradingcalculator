@@ -49,7 +49,7 @@
         }
 
         button {
-            margin-top: 22px;
+            margin-top: 14px;
             width: 100%;
             padding: 12px;
             background-color: #2c7be5;
@@ -133,6 +133,7 @@
     <input type="number" id="sellPrice" inputmode="decimal">
 
     <button onclick="calculate()">Calculate</button>
+    <button onclick="showFeeInfo()" style="background-color:#28a745;">How Fee is Calculated</button>
 
     <div class="result" id="result"></div>
 
@@ -151,7 +152,7 @@
 
 <script>
 function calculate() {
-    const feeRate = 0.012;
+    const feeRate = 0.0112; // Updated correct CSE fee 1.12%
 
     const buyAmount = parseFloat(document.getElementById("buyAmount").value);
     const buyPrice = parseFloat(document.getElementById("buyPrice").value);
@@ -176,9 +177,9 @@ function calculate() {
 
     let output = "";
     output += "Invested Amount : " + buyAmount.toFixed(2) + " LKR\n";
-    output += "Buy Fee (1.2%)  : " + buyFee.toFixed(2) + " LKR\n";
+    output += "Buy Fee (1.12%)  : " + buyFee.toFixed(2) + " LKR\n";
     output += "Shares Bought  : " + shares.toFixed(4) + "\n";
-    output += "Sell Fee (1.2%) : " + sellFee.toFixed(2) + " LKR\n";
+    output += "Sell Fee (1.12%) : " + sellFee.toFixed(2) + " LKR\n";
     output += "Final Amount   : " + netSell.toFixed(2) + " LKR\n\n";
 
     if (profitLoss > 0) {
@@ -193,6 +194,25 @@ function calculate() {
     }
 
     resultDiv.innerText = output;
+}
+
+function showFeeInfo() {
+    const resultDiv = document.getElementById("result");
+    resultDiv.className = "result neutral";
+    resultDiv.innerText = 
+`The total transaction cost for share trading on the Colombo Stock Exchange (CSE) is typically 1.12% for transactions up to Rs. 100 million. This total cost is a combination of several fees, including the stockbroker's commission, which is a minimum of 0.200%.
+
+Breakdown of Transaction Costs:
+- Brokerage Fee: minimum 0.200%, negotiable with broker
+- Share Transaction Levy (STL): 0.300% (applied on both buy and sell)
+- CSE Fees: 0.0525%
+- CDS Fees (Central Depository Systems): 0.0150%
+- SEC Cess: 0.0450%
+
+Step-up Fee Structure:
+- Transactions over Rs. 100 million have a reduced rate of 0.6125% for the excess, including the minimum 0.200% brokerage fee.
+
+For more details, visit the official Invest Sri Lanka website or Colombo Stock Exchange website.`;
 }
 </script>
 
