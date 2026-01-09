@@ -23,12 +23,13 @@
         margin-top: 12px; 
         padding: 12px; 
         background-color: #f0f0f0; 
-        font-size: 13px;      /* slightly bigger for readability */
-        line-height: 1.6;     /* more spacing between lines */
+        font-size: 13px;      
+        line-height: 1.6;     
         border-radius: 5px; 
         display: none; 
-        max-height: 200px;    /* limit height */
-        overflow-y: auto;     /* scroll if too long */
+        max-height: 220px;    
+        overflow-y: auto;     
+        white-space: pre-line;
     }
     .footer { margin-top: 28px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 12px; color: #555; text-align: center; line-height: 1.5; }
     .footer a { color: #2c7be5; text-decoration: none; }
@@ -56,17 +57,18 @@
     <div class="result" id="result"></div>
 
     <div class="fee-info" id="feeInfo">
-        The total transaction cost for share trading on the Colombo Stock Exchange (CSE) is typically 1.12% for transactions up to Rs. 100 million. This total cost includes several fees:
+The total transaction cost for share trading on the Colombo Stock Exchange (CSE) is typically 1.12% for transactions up to Rs. 100 million. This total cost includes several components:
 
-        - Brokerage Fee: minimum 0.200%, negotiable with broker  
-        - Share Transaction Levy (STL): 0.300% (applied on both buy and sell)  
-        - CSE Fees: 0.0525%  
-        - CDS Fees (Central Depository Systems): 0.0150%  
-        - SEC Cess: 0.0450%  
+  • Brokerage Fee: minimum 0.200%, negotiable with broker
+  • Share Transaction Levy (STL): 0.300% (applied on both buy and sell)
+  • CSE Fees: 0.0525%
+  • CDS Fees (Central Depository Systems): 0.0150%
+  • SEC Cess: 0.0450%
 
-        Step-up Fee Structure: Transactions over Rs. 100 million have a reduced rate of 0.6125% for the excess, including the minimum 0.200% brokerage fee.  
+Step-up Fee Structure:
+  • For transactions over Rs. 100 million, the portion exceeding this amount is charged at a reduced rate of 0.6125%, which still includes the minimum 0.200% brokerage fee.
 
-        For more details, visit the official Invest Sri Lanka website or Colombo Stock Exchange website.
+For more details, visit the official Invest Sri Lanka website or Colombo Stock Exchange website.
     </div>
 
     <div class="footer">
