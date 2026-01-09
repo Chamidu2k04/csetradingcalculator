@@ -21,12 +21,14 @@
     .neutral { color: #333; font-weight: bold; }
     .fee-info { 
         margin-top: 12px; 
-        padding: 10px; 
+        padding: 12px; 
         background-color: #f0f0f0; 
-        font-size: 12px; 
-        line-height: 1.4; 
+        font-size: 13px;      /* slightly bigger for readability */
+        line-height: 1.6;     /* more spacing between lines */
         border-radius: 5px; 
         display: none; 
+        max-height: 200px;    /* limit height */
+        overflow-y: auto;     /* scroll if too long */
     }
     .footer { margin-top: 28px; padding-top: 14px; border-top: 1px solid #ddd; font-size: 12px; color: #555; text-align: center; line-height: 1.5; }
     .footer a { color: #2c7be5; text-decoration: none; }
