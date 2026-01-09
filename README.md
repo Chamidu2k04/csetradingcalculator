@@ -25,7 +25,7 @@ The tool is designed for **educational purposes** and demonstrates how trading f
 
 ## Demo
 
-Live version hosted on [Netlify](https://csecalc.spaceship.com)
+Live version hosted on [Netlify](https://csetradingcalculator.chamidu.me)
 
 ## License
 
